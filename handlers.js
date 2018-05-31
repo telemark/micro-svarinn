@@ -16,7 +16,7 @@ exports.hentNyeForsendelser = async (req, res) => {
   const filter = req.params && req.params.filter
   const auth = getAuth(req)
   const options = {
-    url: `${url}$/hentNyeForsendelser`,
+    url: `${url}/mottaker/hentNyeForsendelser`,
     auth: {
       username: auth.name,
       password: auth.pass
@@ -24,7 +24,7 @@ exports.hentNyeForsendelser = async (req, res) => {
   }
   try {
     const { data } = await axios(options)
-    const response = filter ? data.filter(item => !item.tittel.includes(filterString)) : data.filter(item => item.tittel.includes(filterString))
+    const response = filter ? data.filter(item => item.tittel.includes(filterString)) : data.filter(item => !item.tittel.includes(filterString))
     send(res, 200, response)
   } catch (error) {
     throw error
@@ -35,7 +35,7 @@ exports.hentForsendelsefil = async (req, res) => {
   const { id } = req.params
   const auth = getAuth(req)
   const options = {
-    url: `${url}$/hentForsendelsefil/${id}`,
+    url: `${url}/forsendelse/${id}`,
     // responseType:'stream',
     auth: {
       username: auth.name,
@@ -51,12 +51,11 @@ exports.hentForsendelsefil = async (req, res) => {
 }
 
 exports.settForsendelseMottatt = async (req, res) => {
-  const payload = await json(req)
+  const { id } = req.params
   const auth = getAuth(req)
   const options = {
-    url: `${url}$/settForsendelseMottatt`,
+    url: `${url}/kvitterMottak/forsendelse/${id}`,
     method: 'post',
-    data: payload,
     auth: {
       username: auth.name,
       password: auth.pass
@@ -72,10 +71,11 @@ exports.settForsendelseMottatt = async (req, res) => {
 }
 
 exports.settForsendelseMottakFeilet = async (req, res) => {
+  const { id } = req.params
   const payload = await json(req)
   const auth = getAuth(req)
   const options = {
-    url: `${url}$/settForsendelseMottakFeilet`,
+    url: `${url}$/mottakFeilet/forsendelse/${id}`,
     method: 'post',
     data: payload,
     auth: {
