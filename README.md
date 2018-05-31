@@ -1,6 +1,6 @@
 # micro-svarinn
 
-Set env `SVARINN_URL`
+Set env `SVARINN_URL` and `FILTER_STRING`
 
 # API
 
