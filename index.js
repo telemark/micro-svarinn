@@ -9,15 +9,6 @@ const handlers = require('./handlers')
 // Initialize a new router
 const router = Router()
 
-// JWT
-const { SVARINN_URL } = process.env
-
-// Exit if environment variables is not set
-if (!SVARINN_URL) {
-  console.error('Must set environment variables: SVARINN_URL')
-  process.exit(1)
-}
-
 // Plugins
 router.use(cors())
 

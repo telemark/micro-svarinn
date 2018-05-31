@@ -3,7 +3,7 @@ const getAuth = require('basic-auth')
 const { readFile } = require('fs').promises
 const md = require('markdown-it')()
 const { send, json } = require('micro')
-const { SVARINN_URL: url } = process.env
+const url = process.env.SVARINN_URL || 'https://svarut.ks.no/tjenester/svarinn'
 
 exports.front = async (req, res) => {
   const readme = await readFile('./README.md', 'utf-8')
