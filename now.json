@@ -1,0 +1,13 @@
+{
+  "name": "micro-svarinn",
+  "alias": [
+    "svarinn.service.t-fk.no"
+  ],
+  "type": "npm",
+  "env": {
+    "NODE_ENV": "production",
+  },
+  "engines": {
+    "node": ">=10"
+  }
+}
