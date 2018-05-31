@@ -52,7 +52,7 @@ exports.hentForsendelsefil = async (req, res) => {
     const mimeType = headers['content-type']
     const contentDisposition = headers['Content-Disposition']
     res.setHeader('Content-type', mimeType)
-    res.setHeader('Content-type', contentDisposition)
+    res.setHeader('Content-Disposition', contentDisposition)
     send(res, 200, data)
   } catch (error) {
     sendError(res, error)
