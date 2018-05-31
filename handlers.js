@@ -6,7 +6,7 @@ const { send, json } = require('micro')
 const url = process.env.SVARINN_URL || 'https://svarut.ks.no/tjenester/svarinn'
 const filterString = process.env.FILTER_STRING || '(TFK-SIGN)'
 
-const sendError = (res, error = {}) => send(res, error.response && error.response.statusCode ? error.response.status : 400, error.message)
+const sendError = (res, error = {}) => send(res, error.response && error.response.statusCode ? error.response.status : 400, error.response && error.response.data ? error.response.data : error.message)
 
 const getAuth = (req, res) => {
   const auth = bauth(req)
