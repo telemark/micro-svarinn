@@ -1,0 +1,65 @@
+{
+  "name": "micro-svarinn",
+  "version": "1.0.0",
+  "description": "SvarInn microservice",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "standard && nsp check && ava",
+    "test-offline": "standard && ava",
+    "coverage": "nyc ava",
+    "coveralls": "nyc ava && nyc report --reporter=lcov && cat coverage/lcov.info | coveralls",
+    "dev": "micro-dev -H localhost",
+    "start": "micro",
+    "deploy": "npm test && now && now alias",
+    "refresh": "rm -rf node_modules && rm package-lock.json && npm install"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "keywords": [
+    "microservice",
+    "micro",
+    "svarinn",
+    "Telemark fylkeskommune"
+  ],
+  "author": {
+    "name": "Jonas Enge",
+    "email": "jonas.enge@gmail.com",
+    "url": "https://github.com/maccyber"
+  },
+  "contributors": [
+    {
+      "name": "Geir Gåsodden",
+      "email": "geir.gasodden@pythonia.no",
+      "url": "https://github.com/zrrrzzt"
+    }
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "basic-auth": "2.0.0",
+    "cors": "2.8.4",
+    "finalhandler": "1.1.1",
+    "markdown-it": "8.4.1",
+    "micro": "9.3.2",
+    "router": "1.3.2",
+    "axios": "0.18.0"
+  },
+  "devDependencies": {
+    "ava": "0.25.0",
+    "coveralls": "3.0.1",
+    "micro-dev": "3.0.0",
+    "nsp": "3.2.1",
+    "nyc": "11.8.0",
+    "standard": "11.0.1",
+    "test-listen": "1.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/telemark/micro-svarinn.git"
+  },
+  "bugs": {
+    "url": "https://github.com/telemark/micro-svarinn/issues"
+  },
+  "homepage": "https://github.com/telemark/micro-svarinn#readme"
+}
