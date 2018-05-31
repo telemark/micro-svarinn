@@ -7,7 +7,8 @@ Set env `SVARINN_URL`
 | Method | Path | Description |
 | --- | --- | --- |
 | GET | / | This readme |
-| GET | /hentNyeForsendelser |  |
+| GET | /hentNyeForsendelser | Return P360 results |
+| GET | /hentNyeForsendelser/true | Return signeringsoppdrag  |
 | GET | /hentForsendelsefil/:id |  |
 | POST | /settForsendelseMottatt |  |
 | POST | /settForsendelseMottakFeilet |  |

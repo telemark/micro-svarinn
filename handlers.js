@@ -4,6 +4,7 @@ const { readFile } = require('fs').promises
 const md = require('markdown-it')()
 const { send, json } = require('micro')
 const url = process.env.SVARINN_URL || 'https://svarut.ks.no/tjenester/svarinn'
+const FILTER_STRING = 'TFK-SIGN'
 
 exports.front = async (req, res) => {
   const readme = await readFile('./README.md', 'utf-8')
@@ -12,6 +13,7 @@ exports.front = async (req, res) => {
 }
 
 exports.hentNyeForsendelser = async (req, res) => {
+  const filter = req.params && req.params.filter
   const auth = getAuth(req)
   const options = {
     url: `${url}$/hentNyeForsendelser`,
@@ -22,7 +24,8 @@ exports.hentNyeForsendelser = async (req, res) => {
   }
   try {
     const { data } = await axios(options)
-    send(res, 200, data)
+    const response = filter ? data.filter(item => !item.title.includes(FILTER_STRING)) : data.filter(item => item.title.includes(FILTER_STRING))
+    send(res, 200, response)
   } catch (error) {
     throw error
   }
