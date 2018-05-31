@@ -48,7 +48,9 @@ exports.hentForsendelsefil = async (req, res) => {
     auth
   }
   try {
-    const { data } = await axios(options)
+    const { data, headers } = await axios(options)
+    const mimeType = headers['content-type']
+    res.setHeader('Content-type', mimeType)
     send(res, 200, data)
   } catch (error) {
     sendError(res, error)
