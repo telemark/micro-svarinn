@@ -32,7 +32,7 @@ exports.hentNyeForsendelser = async (req, res) => {
   }
   try {
     const { data } = await axios(options)
-    const response = filter ? data.filter(item => item.tittel.includes(filterString)) : data.filter(item => !item.tittel.includes(filterString))
+    const response = filter ? data.filter(item => item.metadataForImport && item.metadataForImport.tittel.includes(filterString)) : data.filter(item => !item.metadataForImport || !item.metadataForImport.tittel.includes(filterString))
     send(res, 200, response)
   } catch (error) {
     sendError(res, error)
