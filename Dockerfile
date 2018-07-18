@@ -1,5 +1,5 @@
 # Setting the base to nodejs 10
-FROM mhart/alpine-node:10@sha256:c8bbcfdbd860de4f40378cf8b37e3b80afdb23ce0d3f626ece4f5897154dc1bf
+FROM mhart/alpine-node:10@sha256:fc5dfe8af093948a8f48b018db5addae767c383c8d3430bcd131e371406bfde5
 
 # Bundle app source
 COPY . /src
