@@ -1,6 +1,6 @@
 {
   "name": "micro-svarinn",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "SvarInn microservice",
   "main": "index.js",
   "private": true,
