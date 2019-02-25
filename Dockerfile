@@ -1,17 +1,10 @@
-# Setting the base to nodejs 10
-FROM mhart/alpine-node:10@sha256:f88175306954522da474a33913b3fe4afb9f03540535f1b5a4bcd57c30cb59f4
+FROM mhart/alpine-node:10 as base
+WORKDIR /usr/src
+COPY package.json package-lock.json /usr/src/
+RUN npm i --production
+COPY . .
 
-# Bundle app source
-COPY . /src
-
-# Change working directory
-WORKDIR "/src"
-
-# Install dependencies
-RUN npm install --production
-
-# Expose 3000
-EXPOSE 3000
-
-# Startup
-ENTRYPOINT npm start
+FROM mhart/alpine-node:base-10
+WORKDIR /usr/src
+COPY --from=base /usr/src .
+CMD ["node", "./node_modules/.bin/micro"]
